@@ -1,27 +1,4 @@
 const http = require('http')
-// 第一种创建server的方式
-// const server = http.createServer(function (req, res) {
-//   res.writeHead(200, {
-//     'content-type': 'text/plain'
-//   })
-//   res.end('Hello, nodejs')
-// })
-// server.listen('3000', function (){
-//   console.log('listening port 3000')
-// })
-
-// 第二种
-// const server = http.createServer()
-// server.on('request', function (req, res) {
-//   res.writeHead(200, {
-//     'content-type': 'text/plain'
-//   })
-//   res.end('Hello, nodejs')
-// })
-// server.listen('3000', function (){
-//   console.log('listening port 3000')
-// })
-
 
 const server = http.createServer()
 server.on('request', function (req, res) {
@@ -31,7 +8,7 @@ server.on('request', function (req, res) {
     data += chunk
   })
 
-  req.on('end', function (){
+  req.on('end', function () {
     const { method, headers, url, httpVersion } = req
     if (method.toLocaleLowerCase() === 'options') {
       // 处理预请求
